@@ -1,0 +1,266 @@
+@keyframes dvishe{
+    from{
+        background-color: #ededed;
+    }
+    50%{
+        background-color: #ededed48;
+    }
+    to{
+        background-color: #EDEDED;
+    }
+}
+
+
+
+body{
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+
+    background: #282828;
+}
+.text{
+    position: absolute;
+    width: 250px;
+    height: 63px;
+    left: 335px;
+    top: 66px;
+
+    font-family: Halant;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 58px;
+    line-height: 91px;
+    color: #FFFFFF;
+}
+.ramka-obmanka{
+    background: #282828;
+    border: 1px solid #EDEDED;
+    border-radius: 37.5px;
+
+    position: absolute;
+    width: 769px;
+    height: 766px;
+    left: 335px;
+    top: 169px;
+}
+.ramka{
+    position: absolute;
+    width: 755px;
+    height: 650px;
+    left: 335px;
+    top: 170px;
+
+    display: flex;
+    flex-direction: column; 
+    max-height: 650px;  
+    overflow-y: hidden;
+    -ms-overflow-style: none
+
+}
+.place{
+    position: absolute;
+    width: 687px;
+    height: 64px;
+    left: 375px;
+    top: 831px;
+    background-color: #EDEDED;
+    border: 1px solid #EDEDED;
+    
+    border-radius: 37.5px;
+}
+.vvod{
+    position: absolute;
+    width: 580px;
+    height: 35px;
+    max-height: 450px;
+    left: 405px;
+    top: 845px;
+    align-content:center; 
+    overflow:auto;
+    outline: none;
+    border: 1px solid #EDEDED;
+    background-color: #EDEDED;
+    resize: none;
+}
+.sms-from-us{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.razmer{
+    width: 70px;
+    height: 70px;
+}
+.sms{
+    width: fit-content;
+    max-width: 500px;
+    height: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    resize: none;
+    overflow-wrap:break-word;
+
+    border-radius: 37.5px;
+
+    font-family: Abel;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    background-color: #d9aa32;
+}
+.obodok_ava{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 376px;
+    top: 450px;
+
+    background: #F1F0F0;
+}
+.avatarka{
+    width: 70px;
+    height: 70px;
+    background-image: url("user_avatar.png");
+    background-size: cover;
+}
+
+.mask{
+    position: absolute;
+    left: 27.3%;
+    right: 70.23%;
+    top: 44.59%;
+    bottom: 53.18%;
+
+    background: #FFFFFF;
+
+}
+.otstup{
+    align-content: center;
+}
+
+/* .path{
+    position: absolute;
+    left: 93.62%;
+    right: 0.01%;
+    top: 0.05%;
+    bottom: 2.08%;
+
+    position: absolute;
+    width: 25.74px;
+    height: 25.86px;
+    left: 397.99px;
+    top: 506.33px;
+
+    position: absolute;
+    left: 27.64%;
+    right: 70.58%;
+    top: 49.45%;
+    bottom: 48.03%;
+
+    background: #F7334C;
+
+    background: #F9C35B;
+} */
+.strelka{
+    position: absolute;
+    left: 1000px;
+    top: 840px;
+    width: 48px;
+    height: 48px;
+    background-image: url("Серая средняя.png");
+}
+.anim{
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    
+    background-color: #d9aa32;
+
+    width: 50px;
+    /* height: 25px; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-radius: 37.5px;
+}
+.point1{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px; 
+    background-color: #EDEDED;
+    margin: 2px;
+}
+.point1{
+    animation-name: dvishe;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.point2{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #EDEDED;
+    margin: 2px;
+}
+.point2{
+    animation-name: dvishe;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.point3{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #EDEDED;
+    margin: 2px;
+}
+.point3{
+    animation-name: dvishe;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.avatarka-bot{
+    width: 70px;
+    height: 70px;
+    background-image: url("bot_avatar.png");
+    background-size: cover;
+}
+.sms-bot{
+    width: fit-content;
+    max-width: 500px;
+    height: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    resize: none;
+    overflow-wrap:break-word;
+
+    border-radius: 37.5px;
+
+    font-family: Abel;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    background-color: #EDEDED;
+}
