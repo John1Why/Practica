@@ -122,7 +122,7 @@ function duplicate() {
                     result = num1 * num2;
                     break;
                 case "+":
-                    result = num1 + num2;
+                    result = Number(num1) + Number(num2);
                     break;
                 case "-":
                     result = num1 - num2;
