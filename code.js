@@ -41,285 +41,119 @@ function duplicate() {
 
         let strelka = document.getElementById("strelka")
         strelka.style.backgroundImage = 'url("Серая средняя.png")'
-        
-        
-        console.log()
-        if(t == "/start"){
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
 
-            ramka.insertBefore(newSMS, firstChild_ramka)
+    
+    let num1 = document.getElementById("num1").innerHTML;
+    console.log(num1)
+    let num2 = document.getElementById("num2").innerHTML;
 
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
+    function createBotMessage(message) {
+        let ramka = document.getElementById("ramka");
+        let firstChild_ramka = ramka.firstChild;
+        let newSMS = document.createElement("table");
+        newSMS.classList.add("sms-from-us");
+        let id = ramka.childElementCount;
+        newSMS.id = id + 1;
 
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = "Привет, меня зовут Чат-бот, а как зовут тебя?"
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
-        if(t.includes("/name: ") == true){ //7
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
+        ramka.insertBefore(newSMS, firstChild_ramka);
 
-            ramka.insertBefore(newSMS, firstChild_ramka)
+        let sms = document.createElement("td");
+        sms.classList.add("otstup");
+        sms.id = newSMS.id + "_sms";
+        let ava = document.createElement("td");
+        ava.classList.add("razmer");
+        ava.id = newSMS.id + "_ava";
+        newSMS.appendChild(ava);
+        newSMS.appendChild(sms);
 
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
+        let pic = document.createElement("div");
+        pic.classList.add("avatarka-bot");
+        pic.id = newSMS.id + "_pic";
+        let txt = document.createElement("div");
+        txt.classList.add("sms-bot");
+        txt.id = newSMS.id + "_txt";
+        txt.innerHTML = message;
+        txt.disabled = true;
 
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = `Привет ${t.slice(7)}, приятно познакомится. Я умею считать, введи числа которые надо посчитать`
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
-
-        if(t.includes("/number: ") == true){ //7
-        if (t.startsWith('/number:')) {
-            let numbersStr = t.substring(8).trim().split(','); // Вырезаем строку после "/number:" и разбираем на массив по запятым
-            let num1 = parseFloat(numbersStr[0]);
-            let num2 = parseFloat(numbersStr[1]);
-        
-        if (!isNaN(num1) && !isNaN(num2)) {      
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
-
-            ramka.insertBefore(newSMS, firstChild_ramka)
-
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
-
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = `Вы ввели следующие числа: ${num1}, ${num2} выберете одну из операций {-, +, *, /}`
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
+        ava.appendChild(pic);
+        sms.appendChild(txt);
     }
+
+    let flag = false;
+
+    if (t == "/start") {
+        if (!flag) {
+            createBotMessage("Привет, меня зовут Чат-бот, а как зовут тебя?");
+            flag = true;
+        }
+    } else if(t == "/stop"){
+        createBotMessage("Всего доброго, если хочешь поговорить пиши /start");
+            flag = false;
+    }else if (t.includes("/name: ")) { // 7
+        const name = t.slice(7).trim();
+        createBotMessage(`Привет ${name}, приятно познакомиться. Я умею считать, введи числа которые надо посчитать`);
+
+
+    } else if (t.startsWith("/number:")) {
+        let numbersStr = t.substring(8).trim().split(','); // Вырезаем строку после "/number:" и разбираем на массив по запятым
+        num1 = parseFloat(numbersStr[0]);
+        document.getElementById("num1").innerHTML = num1
+        num2 = parseFloat(numbersStr[1]);
+        document.getElementById("num2").innerHTML = num2
+
+        if (!isNaN(num1) && !isNaN(num2)) {
+            createBotMessage(`Вы ввели следующие числа: ${num1}, ${num2}.  Выберите одну из операций {-, +, *, /}`);
+        } else {
+            createBotMessage("введите числа нормально");
+            num1 = null;
+            num2 = null;
+
+        }
+    } else if (t == "/" || t == "*" || t == "+" || t == "-") {
+        if (num1 === null || num2 === null) {
+            createBotMessage("!!!!Сначала введите числа!!!!");
+        } else {
+            let result;
+            switch (t) {
+                case "/":
+                    result = num1 / num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+            }
+            if(isNaN(result)){
+                createBotMessage(`Результат: ${result}`);
+            } else {
+                createBotMessage(`Результат: ${result}`);
+            }
+        }
+
+    } else {
+        createBotMessage("Я не понимаю, введите другую команду!");
     }
-        if(t == "/"){
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
 
-            ramka.insertBefore(newSMS, firstChild_ramka)
-
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
-
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = `Результат: ${num1/num2}`
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
         }
 
-        if(t == "*"){
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
 
-            ramka.insertBefore(newSMS, firstChild_ramka)
+        // let original = document.getElementById('zagotovka');  
+        // let clone = original.cloneNode(true);
+        
+        // clone.hidden = false
+        // id = document.getElementById("ramka").childElementCount
+        // clone.id =id+1
+        // clone.lastChild = clone.id + "ava"
+        // document.getElementById("txt").innerHTML = t
+        
+        // console.log (document.getElementById(id+1).firstChild)
 
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
-
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = `Результат: ${num1*num2}`
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
-
-        if(t == "+"){
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
-
-            ramka.insertBefore(newSMS, firstChild_ramka)
-
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
-
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = `Результат: ${num1+num2}`
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
-
-        if(t == "-"){
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
-
-            ramka.insertBefore(newSMS, firstChild_ramka)
-
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
-
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = `Результат: ${num1+num2}`
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
-
-        if(t == "/stop"){
-            let ramka = document.getElementById("ramka")
-            let firstChild_ramka = ramka.firstChild
-            let newSMS = document.createElement("table")
-            newSMS.classList.add("sms-from-us")
-            id = document.getElementById("ramka").childElementCount
-            newSMS.id = id+1
-
-            ramka.insertBefore(newSMS, firstChild_ramka)
-
-            let sms = document.createElement("td")
-            sms.classList.add("otstup")
-            sms.id = newSMS.id + "_sms"
-            let ava = document.createElement("td")
-            ava.classList.add("razmer")
-            ava.id = newSMS.id + "_ava"
-            newSMS.appendChild(ava)
-            newSMS.appendChild(sms)
-
-            let pic = document.createElement("div")
-            pic.classList.add("avatarka-bot")
-            pic.id = newSMS.id + "_pic"
-            let txt = document.createElement("div")
-            txt.classList.add("sms-bot")
-            txt.id = newSMS.id + "_txt"
-            txt.innerHTML = "Всего доброго, если хочешь поговорить пиши /start"
-            txt.disabled = true
-            
-            ava.appendChild(pic)
-            sms.appendChild(txt)
-        }
-}
-
-
-    // let original = document.getElementById('zagotovka');  
-    // let clone = original.cloneNode(true);
-      
-    // clone.hidden = false
-    // id = document.getElementById("ramka").childElementCount
-    // clone.id =id+1
-    // clone.lastChild = clone.id + "ava"
-    // document.getElementById("txt").innerHTML = t
-      
-    // console.log (document.getElementById(id+1).firstChild)
-
-} 
+    } 
 function forText(){
     document.getElementById("text").addEventListener('input', function(){
         let strelka = document.getElementById("strelka")
