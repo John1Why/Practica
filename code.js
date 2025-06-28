@@ -97,9 +97,9 @@ function duplicate() {
     } else if (t.startsWith("/number:")) {
         let numbersStr = t.substring(8).trim().split(','); // Вырезаем строку после "/number:" и разбираем на массив по запятым
         num1 = parseFloat(numbersStr[0]);
-        document.getElementById("num1").innerHTML = num1
+        document.getElementById("num1").innerHTML = Number(num1)
         num2 = parseFloat(numbersStr[1]);
-        document.getElementById("num2").innerHTML = num2
+        document.getElementById("num2").innerHTML = Number(num2)
 
         if (!isNaN(num1) && !isNaN(num2)) {
             createBotMessage(`Вы ввели следующие числа: ${num1}, ${num2}.  Выберите одну из операций {-, +, *, /}`);
@@ -122,7 +122,7 @@ function duplicate() {
                     result = num1 * num2;
                     break;
                 case "+":
-                    result = (+num1) + (+num2);
+                    result = num1 + num2;
                     break;
                 case "-":
                     result = num1 - num2;
